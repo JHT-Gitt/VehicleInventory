@@ -55,23 +55,30 @@ public class Main {
 
     }
     public static void searchMakeModel(Vehicle[] vehicles) {
+
+        boolean match = false;
+        int counter = 0;
+        for (Vehicle count : vehicles){
+            if(count != null){
+                counter++;
+            }
+        }
         scan.nextLine();
         System.out.print("\nEnter Make/Model of the vehicle: ");
         String searchMM = scan.nextLine();
 try {
-
     for (int i = 0; i < vehicles.length; i++ ){
         String mm = vehicles[i].getMakeModel().toLowerCase();
         if(mm.equalsIgnoreCase(searchMM) || mm.startsWith(searchMM) || mm.endsWith(searchMM)){
             vehicles[i].list();
-        }else{
-            System.out.println("\nMake/Model not found 😵");
-            break;
-    }
+            match = true;
+        }
     }
 }catch (NullPointerException e){
-
 }
+        if (match == false){
+            System.out.println("\nMake/Model not found !!!");
+        }
     }
     public static void addAVehicle(Vehicle[] vehicles) {
         int counter = 0;
