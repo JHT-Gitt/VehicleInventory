@@ -7,17 +7,7 @@ public class Main {
    public static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
 
-        int input;
-
-//        Vehicle[] vehicles = {
-//                new Vehicle(101121, "Ford Explorer","Red", 45000,13500),
-//                new Vehicle(101122,"Toyota Camry","Blue",60000,11000),
-//                new Vehicle(101123,"Chevrolet Malibu","Black",50000,9700),
-//                new Vehicle(101124,"Honda Civic","White",70000,7500 ),
-//                new Vehicle(101125,"Subaru Outback","Green",55000,14500),
-//                new Vehicle(101126,"Jeep Wrangler","Yellow",30000,16000),
-//
-//        };
+        int input ;
         Vehicle[] vehicles = new Vehicle[20];
         vehicles[0] = new Vehicle(101121, "Ford Explorer","Red", 45000,13500);
         vehicles[1] = new Vehicle(101122,"Toyota Camry","Blue",60000,11000);
@@ -65,66 +55,34 @@ public class Main {
     public static void searchMakeModel() {
     }
     public static void addAVehicle(Vehicle[] vehicles) {
-        Vehicle[] plusVehicle = new Vehicle[vehicles.length];
-        for (int d = 0; d < vehicles.length; d++){
-            plusVehicle[d] = vehicles[d];
+        int add = 1;
+        int counter = 0;
+        for (Vehicle count : vehicles){
+            if(count != null){
+                counter++;
+            }
         }
-        System.out.print("Enter Vehicle ID: ");
-        plusVehicle[vehicles.length-1].setVehicleID(scan.nextLong());
-        //vehicles[0].setVehicleID(scan.nextLong());
+        System.out.print("\nEnter Vehicle ID: ");
+        long id = scan.nextLong();
         System.out.print("Enter Vehicle make/model: ");
-
-        //vehicles[1].setMakeModel(scan.next());
+        String model = scan.next();
         System.out.print("Enter Vehicle Color: ");
-       // vehicles[2].setColor(scan.next());
+        String vcolor = scan.next();
         System.out.print("Enter Vehicle Odometer: ");
-       // vehicles[3].setOdometerReading(scan.nextInt());
+        int odometer = scan.nextInt();
         System.out.print("Enter Vehicle Price: ");
-       // vehicles[4].setPrice(scan.nextFloat());
-//        Vehicle[] addvehicle = {
-//                new Vehicle(vehicles[0].getVehicleID(),vehicles[1].getMakeModel(),vehicles[2].getColor(),vehicles[3].getOdometerReading(),vehicles[4].getPrice())
-//        };
-//        addvehicle[0].list();
+        float vprice = scan.nextFloat();
 
-//
-//        for(int b= 0; b < 1 ; b++){
-//            System.out.print("Enter Vehicle ID: ");
-//            vehicles[b].setVehicleID(scan.nextLong());
-//           // long id = scan.nextLong();
-//            System.out.print("Enter Vehicle make/model: ");
-//            //String model = scan.next();
-//            vehicles[b].setMakeModel(scan.next());
-//            System.out.print("Enter Vehicle Color: ");
-//            vehicles[b].setColor(scan.next());
-//           // String vcolor = scan.next();
-//            System.out.print("Enter Vehicle Odometer: ");
-//            vehicles[b].setOdometerReading(scan.nextInt());
-//           // int odometer = scan.nextInt();
-//            System.out.print("Enter Vehicle Price: ");
-//            vehicles[b].setPrice(scan.nextFloat());
-//            //float vprice = scan.nextFloat();
-//            vehicles[b] = new Vehicle(vehicles[b].getVehicleID(),vehicles[b].getMakeModel(),vehicles[b].getColor(),vehicles[b].getOdometerReading(),vehicles[b].getPrice());
-//            vehicles[b].list();
-//        }
-//        for (int c = 0 ; c < vehicles.length ; c++){
-//            vehicles[c] = new Vehicle(vehicles[c].getVehicleID(),vehicles[c].getMakeModel(),vehicles[c].getColor(),vehicles[c].getOdometerReading(),vehicles[c].getPrice());
-//            System.out.println(vehicles[c]);
-//        }
+        vehicles[counter] = new Vehicle(id,model,vcolor,odometer,vprice);
+        System.out.println("Vehicle Added");
+        for( int i = 0; i < counter ; i++){
+            vehicles[i].getVehicleID();
+            vehicles[i].getMakeModel();
+            vehicles[i].getColor();
+            vehicles[i].getOdometerReading();
+            vehicles[i].getPrice();
 
-//            System.out.print("Enter Vehicle ID: ");
-//            long id = scan.nextLong();
-//            System.out.print("Enter Vehicle make/model: ");
-//            String model = scan.next();
-//            System.out.print("Enter Vehicle Color: ");
-//            String vcolor = scan.next();
-//            System.out.print("Enter Vehicle Odometer: ");
-//            int odometer = scan.nextInt();
-//            System.out.print("Enter Vehicle Price: ");
-//            float vprice = scan.nextFloat();
-//
-//            Vehicle[] newVehicle = {
-//                    new Vehicle(id, model, vcolor, odometer, vprice)
-//                };
+        }
     }
 
     public static void findVehiclesByPrice() {
@@ -137,7 +95,8 @@ public class Main {
                 counter++;
             }
         }
-        System.out.printf("\nNumber of Vehicles: %d\n", counter);
+        System.out.println("\nInventory Max Capacity: " + vehicles.length);
+        System.out.printf("Number of Vehicles: %d\n", counter);
         try {
             for (Vehicle vehicle : vehicles) {
                 vehicle.list();
