@@ -1,6 +1,7 @@
 package org.example;
 import java.util.*;
 import java.util.Arrays;
+//java.util.InputMismatchException;
 
 
 public class Main {
@@ -31,7 +32,7 @@ public class Main {
                     listAllVehicles(vehicles);
                     break;
                 case 2:
-                    searchMakeModel();
+                    searchMakeModel(vehicles);
                     break;
                 case 3:
                     colorSearch();
@@ -51,40 +52,59 @@ public class Main {
         scan.close();
     }
     public static void colorSearch() {
+
     }
-    public static void searchMakeModel() {
+    public static void searchMakeModel(Vehicle[] vehicles) {
+        scan.nextLine();
+        System.out.print("\nEnter Make/Model of the vehicle: ");
+        String searchMM = scan.nextLine();
+try {
+
+    for (int i = 0; i < vehicles.length; i++ ){
+        String mm = vehicles[i].getMakeModel().toLowerCase();
+        if(mm.equalsIgnoreCase(searchMM) || mm.startsWith(searchMM) || mm.endsWith(searchMM)){
+            vehicles[i].list();
+        }else{
+            System.out.println("\nMake/Model not found 😵");
+            break;
+    }
+    }
+}catch (NullPointerException e){
+
+}
     }
     public static void addAVehicle(Vehicle[] vehicles) {
-        int add = 1;
         int counter = 0;
         for (Vehicle count : vehicles){
             if(count != null){
                 counter++;
             }
         }
-        System.out.print("\nEnter Vehicle ID: ");
-        long id = scan.nextLong();
-        System.out.print("Enter Vehicle make/model: ");
-        String model = scan.next();
-        System.out.print("Enter Vehicle Color: ");
-        String vcolor = scan.next();
-        System.out.print("Enter Vehicle Odometer: ");
-        int odometer = scan.nextInt();
-        System.out.print("Enter Vehicle Price: ");
-        float vprice = scan.nextFloat();
+        if(counter >= vehicles.length){
+            System.out.println("\nInventory is full !!\nCannot add new Vehicle");
+        }else{
+            System.out.print("\nEnter Vehicle ID: ");
+            long id = scan.nextLong();
+            System.out.print("Enter Vehicle make/model: ");
+            String model = scan.next();
+            System.out.print("Enter Vehicle Color: ");
+            String vcolor = scan.next();
+            System.out.print("Enter Vehicle Odometer: ");
+            int odometer = scan.nextInt();
+            System.out.print("Enter Vehicle Price: ");
+            float vprice = scan.nextFloat();
 
-        vehicles[counter] = new Vehicle(id,model,vcolor,odometer,vprice);
-        System.out.println("Vehicle Added");
-        for( int i = 0; i < counter ; i++){
-            vehicles[i].getVehicleID();
-            vehicles[i].getMakeModel();
-            vehicles[i].getColor();
-            vehicles[i].getOdometerReading();
-            vehicles[i].getPrice();
-
+            vehicles[counter] = new Vehicle(id,model,vcolor,odometer,vprice);
+            System.out.println("\nVehicle Added 🚘 !!");
+            for( int i = 0; i < counter ; i++){
+                vehicles[i].getVehicleID();
+                vehicles[i].getMakeModel();
+                vehicles[i].getColor();
+                vehicles[i].getOdometerReading();
+                vehicles[i].getPrice();
+            }
         }
     }
-
     public static void findVehiclesByPrice() {
     }
 
