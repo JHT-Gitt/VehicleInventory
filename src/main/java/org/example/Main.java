@@ -65,7 +65,7 @@ public class Main {
         }
         scan.nextLine();
         System.out.print("\nEnter Make/Model of the vehicle: ");
-        String searchMM = scan.nextLine();
+        String searchMM = scan.nextLine().toLowerCase();
 try {
     for (int i = 0; i < vehicles.length; i++ ){
         String mm = vehicles[i].getMakeModel().toLowerCase();
