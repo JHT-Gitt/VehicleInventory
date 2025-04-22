@@ -134,25 +134,34 @@ try {
     }
     public static void findVehiclesByPrice(Vehicle[] vehicles) {
 
+        float minPrice, maxPrice, priceSearch;
+        boolean isfound = false;
 
-//
-//        boolean match = false;
-//        scan.nextLine();
-//        System.out.print("\nEnter Price of the vehicle: ");
-//        String searchMM = scan.nextLine().toLowerCase();
-//        try {
-//            for (int i = 0; i < vehicles.length; i++ ){
-//                String mm = vehicles[i].getMakeModel().toLowerCase();
-//                if(mm.equalsIgnoreCase(searchMM) || mm.startsWith(searchMM) || mm.endsWith(searchMM)){
-//                    vehicles[i].list();
-//                    match = true;
-//                }
-//            }
-//        }catch (NullPointerException e){
-//        }
-//        if (!match){
-//            System.out.println("\nMake/Model not found !!!");
-//        }
+        do {
+            System.out.print("\nEnter the minimum price: ");
+            minPrice = scan.nextFloat();
+            System.out.print("Enter the maximum price: ");
+            maxPrice = scan.nextFloat();
+
+            if(minPrice > maxPrice ){
+                System.out.println("\nMinimum Price must be small than Maximum price.");
+                findVehiclesByPrice(vehicles);
+            }
+
+            try {
+                for (Vehicle vehicle : vehicles) {
+                    priceSearch = vehicle.getPrice();
+                    if (minPrice <= priceSearch && maxPrice > priceSearch) {
+                        isfound = true;
+                        vehicle.list();
+                    }
+                }
+            } catch (NullPointerException e) {
+            }
+            if (!isfound) {
+                System.out.println("\nNo Vehicle within range of the price that you input");
+            }
+        } while (!isfound);
 
     }
 
