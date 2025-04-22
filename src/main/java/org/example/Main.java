@@ -1,4 +1,5 @@
 package org.example;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.Arrays;
 //java.util.InputMismatchException;
@@ -138,13 +139,20 @@ try {
         boolean isfound = false;
 
         do {
+            System.out.println("\n--Enter and press 0 to home screen--");
+
             System.out.print("\nEnter the minimum price: ");
             minPrice = scan.nextFloat();
+            if(minPrice == 0){
+                break;
+            }
             System.out.print("Enter the maximum price: ");
             maxPrice = scan.nextFloat();
-
+            if(maxPrice == 0){
+                break;
+            }
             if(minPrice > maxPrice ){
-                System.out.println("\nMinimum Price must be small than Maximum price.");
+                System.out.println("\nMinimum Price must be smaller than Maximum price.");
                 findVehiclesByPrice(vehicles);
             }
 
