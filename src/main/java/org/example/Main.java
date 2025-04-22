@@ -35,10 +35,11 @@ public class Main {
                     searchMakeModel(vehicles);
                     break;
                 case 3:
-                    colorSearch();
+                    findVehiclesByPrice(vehicles);
+
                     break;
                 case 4:
-                    findVehiclesByPrice();
+                    colorSearch(vehicles);
                     break;
                 case 5:
                     addAVehicle(vehicles);
@@ -51,7 +52,26 @@ public class Main {
         }while(input < 7);
         scan.close();
     }
-    public static void colorSearch() {
+    public static void colorSearch(Vehicle[] vehicles) {
+
+        boolean match = false;
+        scan.nextLine();
+        System.out.print("\nEnter Color of the vehicle: ");
+        String color = scan.nextLine().toLowerCase();
+        try {
+            for (int i = 0; i < vehicles.length; i++ ){
+                String colorSearch = vehicles[i].getColor().toLowerCase();
+                if(color.equalsIgnoreCase(colorSearch) || color.startsWith(colorSearch) || color.endsWith(colorSearch)){
+                    vehicles[i].list();
+                    match = true;
+                }
+            }
+        }catch (NullPointerException e){
+        }
+        if (!match){
+            System.out.println("\nColor not found !!!");
+        }
+
 
     }
     public static void searchMakeModel(Vehicle[] vehicles) {
@@ -112,7 +132,28 @@ try {
             }
         }
     }
-    public static void findVehiclesByPrice() {
+    public static void findVehiclesByPrice(Vehicle[] vehicles) {
+
+
+//
+//        boolean match = false;
+//        scan.nextLine();
+//        System.out.print("\nEnter Price of the vehicle: ");
+//        String searchMM = scan.nextLine().toLowerCase();
+//        try {
+//            for (int i = 0; i < vehicles.length; i++ ){
+//                String mm = vehicles[i].getMakeModel().toLowerCase();
+//                if(mm.equalsIgnoreCase(searchMM) || mm.startsWith(searchMM) || mm.endsWith(searchMM)){
+//                    vehicles[i].list();
+//                    match = true;
+//                }
+//            }
+//        }catch (NullPointerException e){
+//        }
+//        if (!match){
+//            System.out.println("\nMake/Model not found !!!");
+//        }
+
     }
 
     public static void listAllVehicles(Vehicle[] vehicles){
@@ -128,7 +169,7 @@ try {
             for (Vehicle vehicle : vehicles) {
                 vehicle.list();
             }
-        }catch (NullPointerException e){
+        }catch(NullPointerException e){
 
         }
 
